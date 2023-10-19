@@ -1,0 +1,39 @@
+﻿@model IEnumerable<Hotels.Domain.entities.Namaste>
+
+<div class="w-100 card border-0 p-4">
+    <div class="card-header bg-success bg-gradiant ml-0 py-3">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h2 class="text-white py-2">Hotels List</h2>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="card-body border p-4">
+    <div class="row pb-3">
+        <div class="col-6 offset-6 text-end">
+            <a class="btn btn-secondary" asp-controller="Namaste" asp-action="Create">Create New Hotel</a>
+        </div>
+    </div>
+</div>
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Sqft</th>
+            <th>Occupancy</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var obj in Model)
+        {
+            <tr>
+                <td>@obj.Name</td>
+                <td>@obj.Price</td>
+                <td>@obj.Sqft</td>
+                <td>@obj.Occupancy</td>
+            </tr>
+        }
+    </tbody>
+</table>
