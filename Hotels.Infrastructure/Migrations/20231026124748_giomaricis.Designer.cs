@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Hotels.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20231019192515_seedNamasteToDb")]
-    partial class seedNamasteToDb
+    [Migration("20231026124748_giomaricis")]
+    partial class giomaricis
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -44,7 +44,8 @@ namespace Hotels.Infrastructure.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<int>("Occupancy")
                         .HasColumnType("int");
@@ -93,6 +94,85 @@ namespace Hotels.Infrastructure.Migrations
                             Price = 700.0,
                             Sqft = 850
                         });
+                });
+
+            modelBuilder.Entity("Hotels.Domain.entities.NamasteNumber", b =>
+                {
+                    b.Property<int>("Namaste_Number")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Namaste_Number"));
+
+                    b.Property<int>("NamasteId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("SpecialDetails")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Namaste_Number");
+
+                    b.HasIndex("NamasteId");
+
+                    b.ToTable("NamasteNumbers");
+
+                    b.HasData(
+                        new
+                        {
+                            Namaste_Number = 101,
+                            NamasteId = 15
+                        },
+                        new
+                        {
+                            Namaste_Number = 102,
+                            NamasteId = 15
+                        },
+                        new
+                        {
+                            Namaste_Number = 103,
+                            NamasteId = 15
+                        },
+                        new
+                        {
+                            Namaste_Number = 201,
+                            NamasteId = 16
+                        },
+                        new
+                        {
+                            Namaste_Number = 202,
+                            NamasteId = 16
+                        },
+                        new
+                        {
+                            Namaste_Number = 203,
+                            NamasteId = 16
+                        },
+                        new
+                        {
+                            Namaste_Number = 301,
+                            NamasteId = 17
+                        },
+                        new
+                        {
+                            Namaste_Number = 302,
+                            NamasteId = 17
+                        },
+                        new
+                        {
+                            Namaste_Number = 303,
+                            NamasteId = 17
+                        });
+                });
+
+            modelBuilder.Entity("Hotels.Domain.entities.NamasteNumber", b =>
+                {
+                    b.HasOne("Hotels.Domain.entities.Namaste", "Namaste")
+                        .WithMany()
+                        .HasForeignKey("NamasteId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Namaste");
                 });
 #pragma warning restore 612, 618
         }

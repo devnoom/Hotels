@@ -15,6 +15,7 @@ namespace Hotels.Infrastructure.Data
         }
 
         public DbSet<Namaste> Namastes { get; set; }
+        public DbSet<NamasteNumber> NamasteNumbers { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -47,6 +48,48 @@ namespace Hotels.Infrastructure.Data
                 Price = 700,
                 Sqft = 850,
             });
+
+            modelBuilder.Entity<NamasteNumber>().HasData(
+                new NamasteNumber
+                {
+                    Namaste_Number = 101,
+                    NamasteId = 15,
+                },new NamasteNumber
+                {
+                    Namaste_Number = 102,
+                    NamasteId = 15,
+                }, new NamasteNumber
+                {
+                    Namaste_Number = 103,
+                    NamasteId = 15,
+                }, new NamasteNumber
+                {
+                    Namaste_Number = 201,
+                    NamasteId = 16,
+                }, new NamasteNumber
+                {
+                    Namaste_Number = 202,
+                    NamasteId = 16,
+                }, new NamasteNumber
+                {
+                    Namaste_Number = 203,
+                    NamasteId = 16,
+                }, new NamasteNumber
+                {
+                    Namaste_Number = 301,
+                    NamasteId = 17,
+                }, new NamasteNumber
+                {
+                    Namaste_Number = 302,
+                    NamasteId = 17,
+                }, new NamasteNumber
+                {
+                    Namaste_Number = 303,
+                    NamasteId = 17,
+                }
+
+
+                );
         
         }
     }
